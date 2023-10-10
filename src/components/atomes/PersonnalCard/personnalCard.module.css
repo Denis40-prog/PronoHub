@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cardcontainer {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr)); /* Ajuste automatiquement le nombre de colonnes */
+    width: 95%;
+    align-content: center;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cardimage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.cardcontent {
+    padding: 16px;
+}
+
+.cardname {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: green;
+}
+
+.cardemail {
+    font-size: 14px;
+    color: #666;
+}
