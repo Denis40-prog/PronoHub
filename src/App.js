@@ -2,6 +2,8 @@ import './App.css';
 import PersonnalCardGrid from './components/atomes/PersonnalCard/PersonnalCard';
 import PersonnalCard from './components/atomes/PersonnalCard/PersonnalCard';
 import Header from './components/molecules/header/Header';
+import Table from './components/molecules/table/Table';
+
 
 function App() {
   const title = "PronoHub";
@@ -17,6 +19,7 @@ function App() {
         </div>
 
 
+<Table></Table>
     </div>
   );
 }
