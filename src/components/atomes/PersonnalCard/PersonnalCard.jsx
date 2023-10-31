@@ -1,4 +1,6 @@
 import React from 'react';
+import 'reactjs-popup/dist/index.css';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 
 const people = [
   {
@@ -75,35 +77,30 @@ const people = [
   },
 ];
 
-
-// flex flex-wrap justify-center
-
-
-function PersonnalCardGrid() {
+const PersonnalCardGrid = () => {
   return (
-    <div className="flex flex-wrap justify-center" 
-    // style={
-    //    { display: "flex",
-    //     alignItems: "center",
-    //     flexWrap : "wrap",
-    //     gridTemplateRows: "repeat(3, minmax(0, 1fr))",
-        
-    //   }
-    // }
+    <div className="flex flex-wrap justify-center"
     >
-      {people.map((person, index) => (
-        <PersonnalCard key={index} person={person} />
+      {people.map((person) => (
+        <PersonnalCard person={person} />
       ))}
     </div>
   );
 }
 
+const PersonnalCard = ({ person }) => {
+  const [anchor, setAnchor] = React.useState(null);
 
-function PersonnalCard({ person }) {
+  const handleClick = (event) => {
+    setAnchor(anchor ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchor);
+  const id = open ? 'simple-popper' : undefined;
   return (
     <div
       className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4 cursor-pointer"
-      onClick={() => console.log("click")}
+      onClick={handleClick}
     >
       <img className="rounded-t-lg" src={person.image} alt="" />
       <div className="p-5">
@@ -114,11 +111,16 @@ function PersonnalCard({ person }) {
           {person.email}
         </p>
       </div>
+      <BasePopup id={id} open={open} anchor={anchor}
+        className="z-50 rounded-lg font-sans font-medium text-sm mt-2 p-3 border border-solid border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-md text-slate-900 dark:text-slate-100"
+        >
+          <div>
+            <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{person.name}</h1>
+            <img className="rounded-t-lg" src={person.image} alt="" />
+          </div>
+      </BasePopup>
     </div>
   );
 }
-
-
-
 
 export default PersonnalCardGrid;
