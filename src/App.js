@@ -4,13 +4,12 @@ import Header from './components/molecules/header/Header';
 
 
 function App() {
-  const [activePage, setActivePage] = useState(null)
+  const [activePage, setActivePage] = useState('Connexion')
 
   return (
     <div className="App">
       <Header setAppActivePage={setActivePage}/>
-      {/* <header className="App-header" /> */}
-      <body>
+      <body className='bg-black h-screen'>
         {activePage}
       </body>
     </div>
