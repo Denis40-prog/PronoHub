@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useState } from 'react';
 import Header from './components/molecules/header/Header';
+import Table from './components/molecules/table/Table';
+
 
 function App() {
   const title = "PronoHub";
