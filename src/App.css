@@ -33,3 +33,21 @@
     transform: rotate(360deg);
   }
 }
+
+h1{
+  color: white;
+  font-size: 64px;
+}
+h2{
+  color: white;
+  font-size: 48px;
+}
+h3{
+  color: white;
+}
+p{
+  color: white;
+}
+label {
+  color: white;
+}
