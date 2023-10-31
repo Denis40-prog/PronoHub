@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useState } from 'react';
 import Header from './components/molecules/header/Header';
+import Table from './components/molecules/table/Table';
+
 
 function App() {
   const title = "PronoHub";
@@ -9,9 +11,7 @@ function App() {
   return (
     <div className="App">
       <Header setAppActivePage={setActivePage}/>
-      <header className="App-header">
-        {activePage}
-      </header>
+      {/* <header className="App-header" /> */}
       <body>
         {activePage}
       </body>

@@ -75,29 +75,53 @@ const people = [
   },
 ];
 
-function PersonnalCard() {
+
+// flex flex-wrap justify-center
+
+
+function PersonnalCardGrid() {
   return (
-    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-      {people.map((person) => (
-        <div
-          key={person.email}
-          className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7"
-        >
-          <img
-            className="h-full w-full object-cover object-center group-hover:opacity-75"
-            src={person.image}
-            alt=""
-          />
-          <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-            <h3 className="mt-4 text-sm text-gray-700">
-              {person.name}
-            </h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">{person.email}</p>
-          </div>
-        </div>
+    <div className="flex flex-wrap justify-center" 
+    // style={
+    //    { display: "flex",
+    //     alignItems: "center",
+    //     flexWrap : "wrap",
+    //     gridTemplateRows: "repeat(3, minmax(0, 1fr))",
+        
+    //   }
+    // }
+    >
+      {people.map((person, index) => (
+        <PersonnalCard key={index} person={person} />
       ))}
     </div>
   );
 }
 
-export default PersonnalCard;
+
+function PersonnalCard({ person }) {
+  return (
+    <div
+      className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4"
+    >
+      <a href="#">
+        <img className="rounded-t-lg" src={person.image} alt="" />
+      </a>
+      <div className="p-5">
+        <a href="#">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {person.name}
+          </h5>
+        </a>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          {person.email}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+export default PersonnalCardGrid;
