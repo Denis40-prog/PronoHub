@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Style from "./header.module.css";
 import Button from "../../atomes/Button/Button";
 import logo from "../../../assets/images/LogoPronohub.png";

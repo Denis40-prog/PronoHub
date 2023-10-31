@@ -11,9 +11,7 @@ function App() {
   return (
     <div className="App">
       <Header setAppActivePage={setActivePage}/>
-      <header className="App-header">
-        {activePage}
-      </header>
+      {/* <header className="App-header" /> */}
       <body>
         {activePage}
       </body>
