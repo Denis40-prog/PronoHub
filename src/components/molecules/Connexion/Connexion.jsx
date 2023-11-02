@@ -15,32 +15,29 @@ const Connexion = () => {
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" action="#" method="POST">
                         <div>
-                            <label for="email" className="block text-sm font-medium leading-6 color-accent">Email</label>
+                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-accent">Email</label>
                             <div className="mt-2">
-                            <input id="email" name="email" type="email" autocomplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            <input id="email" name="email" type="email" placeholder="Entrez votre email" required className="block w-full placeholder:italic p-2 rounded-xl border-2 border-accent py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
                         <div>
                             <div className="flex items-center justify-between">
-                            <label for="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                            <div className="text-sm">
-                                <p className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</p>
-                            </div>
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-accent">Password</label>
                             </div>
                             <div className="mt-2">
-                            <input id="password" name="password" type="password" autocomplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            <input id="password" name="password" type="password" placeholder="Entrez votre mot de passe" required className="block w-full placeholder:italic p-2 rounded-xl border-2 border-accent py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
-                        <div>
-                            <button type="submit" className="flex w-full justify-center text-white rounded-2xl text-sm px-5 py-2.5 mr-2 mb-2 bg-accent">Dark</button>
+                        <div className="flex w-full place-content-center">
+                            <button type="submit" className="flex w-fit font-semibold justify-center text-black rounded-3xl text-sm px-5 py-2.5 mr-2 mb-2 bg-accent">Se connecter</button>
                         </div>
                     </form>
 
                     <p className="mt-10 text-center text-sm text-gray-500">
-                    Not a member?
-                    <p className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</p>
+                        <a className="hover:text-accent cursor-pointer">Créer un compte</a> / 
+                        <a className="hover:text-accent cursor-pointer"> S'inscrire</a>
                     </p>
                 </div>
             </div>
