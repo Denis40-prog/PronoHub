@@ -12,6 +12,9 @@ module.exports = {
       black: '#000000',
       white: '#FFFFFF'
     },
+    boxShadow: {
+      caca: 'rgba(0, 0, 0, 0.35) 0px 0px 15px'
+    },
     plugins: [],
   }
 }
