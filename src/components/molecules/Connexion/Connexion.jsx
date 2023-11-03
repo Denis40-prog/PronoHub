@@ -25,8 +25,7 @@ const Connexion = ({ ...props }) => {
           <div className="shadow-caca shadow-secondary rounded-xl w-2/6 mt-12 bg-primary">
             <div className=" h-3/6 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <img className="mx-auto h-20 w-auto" src={logo} alt="" />
-                    <h2 className="mt-10 text-center font-bold leading-9 tracking-tight">Conne<span className="text-accent">xion</span></h2>
+                    <h2 className="mt-6 text-center font-bold leading-9 tracking-tight">Conne<span className="text-accent">xion</span></h2>
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

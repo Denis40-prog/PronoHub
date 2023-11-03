@@ -41,8 +41,7 @@ const Inscription = ({ ...props }) => {
           <div className="shadow-caca shadow-secondary rounded-xl w-2/6 mt-12 bg-primary">
             <div className=" h-3/6 flex-col justify-center px-6 py-2 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <img className="mx-auto h-20 w-auto" src={logo} alt="" />
-                    <h2 className="mt-2 text-center font-bold leading-9 tracking-tight">Inscrip<span className="text-accent">tion</span></h2>
+                    <h2 className="mt-12 text-center font-bold leading-9 tracking-tight">Inscrip<span className="text-accent">tion</span></h2>
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -93,7 +92,7 @@ const Inscription = ({ ...props }) => {
                         </div>
                     </form>
 
-                    <p className="mt-10 text-center text-sm text-gray-500">
+                    <p className="mt-5 text-center text-sm text-gray-500">
                         Déjà un compte ? <a href="#" onClick={handleConnexionclick} className="hover:text-accent cursor-pointer">Se connecter</a>
                     </p>
                 </div>
