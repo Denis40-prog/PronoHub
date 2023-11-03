@@ -12,12 +12,19 @@ import Accueil from './components/molecules/Accueil/Accueil';
 
 function App() {
   
- useEffect(() => {
-    selectPage();
-  }, [pageName]);
+ 
   
     const [activePage, setActivePage] = useState(null); // Initialisez activePage à null pour éviter des problèmes
     const [pageName, setPageName] = useState("Connexion");
+    const [cookies, setCookie] = useCookies(['restriction']);
+
+    useEffect(() => {
+      selectPage();
+    }, [pageName]);
+
+    if(cookies.restriction === undefined){
+      setCookie('restriction', true,)
+    }
 
   const changePage = (name) => {
     setPageName(name);
@@ -49,17 +56,13 @@ function App() {
     }
   }
   
-  const [cookies, setCookie] = useCookies(['restriction']);
-
-  if(cookies.restriction === undefined){
-    setCookie('restriction', true,)
-  }
+ 
 
   return (
     <CookiesProvider>
 
     <div className="App">
- <body className='bg-black min-h-screen'>
+ <body className='bg-black h-full pb-10'>
 
       {cookies.restriction ? 
         
