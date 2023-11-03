@@ -44,12 +44,12 @@ function App() {
   const [activePage, setActivePage] = useState(null); // Initialisez activePage à null pour éviter des problèmes
 
   return (
-    <div className="">
+    <>
       <Header setPage={changePage} />
-      <body className='bg-black h-screen'>
+      <body className='bg-black min-h-screen'>
         {activePage}
       </body>
-    </div>
+    </>
   );
 }
 
