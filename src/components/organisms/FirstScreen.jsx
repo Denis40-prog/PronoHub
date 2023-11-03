@@ -30,9 +30,6 @@ function FirstScreen() {
             J'ai moins de 18 ans - Sortir
         </ButtonFirstScreen>
         </div>
-       
-
-
     </div>
   )
 }

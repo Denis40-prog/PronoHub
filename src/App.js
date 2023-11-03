@@ -11,9 +11,6 @@ import PersonnalCard from './components/atomes/PersonnalCard/PersonnalCard';
 import Accueil from './components/molecules/Accueil/Accueil';
 
 function App() {
-  
- 
-  
     const [activePage, setActivePage] = useState(null); // Initialisez activePage à null pour éviter des problèmes
     const [pageName, setPageName] = useState("Connexion");
     const [cookies, setCookie] = useCookies(['restriction']);
@@ -55,29 +52,14 @@ function App() {
         break;
     }
   }
-  
- 
 
   return (
     <CookiesProvider>
-
-    <div className="App">
- <body className='bg-black h-full pb-10'>
-
-      {cookies.restriction ? 
-        
-      <FirstScreen>
-       </FirstScreen>
-       :
-       <>
-   <Header setPage={changePage} />
-    {activePage}
-  </> 
-}
-</body>
-
-    </div>
-
+      <div className="App">
+        <body className='bg-black h-screen pb-10'>
+          {cookies.restriction ? <FirstScreen /> : <> <Header setPage={changePage} /> {activePage} </>}
+        </body>
+      </div>
     </CookiesProvider>
   );
 }
