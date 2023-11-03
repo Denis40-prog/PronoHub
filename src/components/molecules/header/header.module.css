@@ -31,3 +31,6 @@
 .image {
     height: 4rem;
 }
+.image:hover {
+    cursor: pointer;
+}
