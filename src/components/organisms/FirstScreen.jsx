@@ -19,7 +19,7 @@ function FirstScreen() {
     <div className='flex flex-col items-center justify-center place-content-center min-h-screen'>
         <img src={Logo} alt="logo" className=' w-56' />
         <h1 className='font-bold'>Avez-vous 18 ans ?</h1>
-        <h2>PronoHub est un site qui propose des paris sportif. <br/>
+        <h2 className='text-center'>PronoHub est un site qui propose des paris sportif. <br/>
         Vous devez avoir 18 ans ou plus pour entrer.
         </h2>
         <div className='flex flex-row p-10'>

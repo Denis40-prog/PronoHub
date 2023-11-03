@@ -93,7 +93,7 @@ const Inscription = ({ ...props }) => {
                     </form>
 
                     <p className="mt-5 text-center text-sm text-gray-500">
-                        Déjà un compte ? <a href="#" onClick={handleConnexionclick} className="hover:text-accent cursor-pointer">Se connecter</a>
+                        <a href="#" onClick={handleConnexionclick} className="hover:text-accent cursor-pointer">Déjà un compte ? Se connecter</a>
                     </p>
                 </div>
             </div>
