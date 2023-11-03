@@ -18,7 +18,7 @@ const Connexion = ({ ...props }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Email : ' + emailValue + ' Password : ' + passwordValue);
+        props.setPage("Accueil");
     };
     return(
         <div className="flex justify-center">
@@ -42,7 +42,7 @@ const Connexion = ({ ...props }) => {
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-accent">Password</label>
                             <div className="mt-2">
-                                <input id="password" name="password" value={passwordValue} onChange={handlePasswordChange}
+                                <input id="password" type="password" name="password" value={passwordValue} onChange={handlePasswordChange}
                                 placeholder="Entrez votre mot de passe" required className="block w-full placeholder:italic p-2 rounded-xl border-2 border-accent py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
