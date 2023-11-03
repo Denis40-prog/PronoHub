@@ -7,6 +7,7 @@ import Connexion from './components/molecules/Connexion/Connexion';
 import Inscription from './components/molecules/Inscription/Inscription';
 import Contact from './components/molecules/Contact/Contact';
 import Accueil from './components/molecules/Accueil/Accueil';
+import InfoMatch from './components/organisms/InfoMatch/InfoMatch';
 
 function App() {
     const [activePage, setActivePage] = useState(null); // Initialisez activePage à null pour éviter des problèmes
@@ -38,6 +39,9 @@ function App() {
         break;
       case "Accueil":
         setActivePage(<Accueil setPage={changePage} />);
+        break;
+      case "InfosMatch":
+        setActivePage(<InfoMatch setPage={changePage} />);
         break;
       default:
         setActivePage(<Connexion setPage={changePage} />);
