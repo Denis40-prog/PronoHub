@@ -30,7 +30,7 @@ const Inscription = ({ ...props }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Email : ' + emailValue + ' Password : ' + passwordValue + ' ConfirmPassword : ' + confirmPasswordValue + ' Firstname : ' + firstnameValue);
+        props.setPage("Accueil");
     };
 
     const handleConnexionclick = () => {
@@ -74,7 +74,7 @@ const Inscription = ({ ...props }) => {
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-accent">Mot de passe</label>
                             <div className="mt-2">
-                                <input id="password" name="password" value={passwordValue} onChange={handlePasswordChange}
+                                <input id="password" type="password" name="password" value={passwordValue} onChange={handlePasswordChange}
                                 placeholder="Entrez votre mot de passe" required className="block w-full placeholder:italic p-2 rounded-xl border-2 border-accent py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
@@ -82,13 +82,14 @@ const Inscription = ({ ...props }) => {
                         <div>
                             <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-accent">Confrimation du mot de passe</label>
                             <div className="mt-2">
-                                <input id="confirmPassword" name="confirmPassword" value={confirmPasswordValue} onChange={handleConfirmPasswordChange}
+                                <input id="confirmPassword" type="password" name="confirmPassword" value={confirmPasswordValue} onChange={handleConfirmPasswordChange}
                                 placeholder="Confirmez votre mot de passe" required className="block w-full placeholder:italic p-2 rounded-xl border-2 border-accent py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
                         <div className="flex w-full place-content-center">
-                            <button type="submit" disabled={!emailValue || !passwordValue} className="flex w-fit font-semibold justify-center text-black rounded-3xl disabled:opacity-25 text-sm px-5 py-2.5 mr-2 mb-2 bg-accent">S'inscrire</button>
+                            <button type="submit" disabled={!emailValue || !passwordValue || !confirmPasswordValue || !firstnameValue || !lastnameValue || passwordValue !== confirmPasswordValue} 
+                            className="flex w-fit font-semibold justify-center text-black rounded-3xl disabled:opacity-25 text-sm px-5 py-2.5 mr-2 mb-2 bg-accent">S'inscrire</button>
                         </div>
                     </form>
 

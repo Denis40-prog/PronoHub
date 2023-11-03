@@ -6,6 +6,7 @@ import Inscription from './components/molecules/Inscription/Inscription';
 import Informations from './components/molecules/Infomations/Informations'; // Assurez-vous que le chemin est correct
 import Contact from './components/molecules/Contact/Contact';
 import PersonnalCard from './components/atomes/PersonnalCard/PersonnalCard';
+import Accueil from './components/molecules/Accueil/Accueil';
 
 function App() {
   const [pageName, setPageName] = useState("Connexion");
@@ -35,6 +36,9 @@ function App() {
       case "A_propos":
         setActivePage(<PersonnalCard />);
         break;
+      case "Accueil":
+        setActivePage(<Accueil setPage={changePage} />);
+        break;
       default:
         setActivePage(<Connexion setPage={changePage} />);
         break;
@@ -45,8 +49,8 @@ function App() {
 
   return (
     <>
-      <Header setPage={changePage} />
       <body className='bg-black min-h-screen'>
+      <Header setPage={changePage} />
         {activePage}
       </body>
     </>
