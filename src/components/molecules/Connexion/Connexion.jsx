@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logo from "../../../assets/images/LogoPronohub.png";
 
 const Connexion = ({ ...props }) => {
     const handleInscriptionclick = () => {
@@ -22,8 +21,8 @@ const Connexion = ({ ...props }) => {
     };
     return(
         <div className="flex justify-center">
-          <div className="shadow-caca shadow-secondary rounded-xl w-2/6 mt-12 bg-primary">
-            <div className=" h-3/6 flex-col justify-center px-6 py-12 lg:px-8">
+          <div className="shadow-caca shadow-secondary rounded-xl w-2/6 mt-20 bg-primary">
+            <div className=" h-3/6 flex-col justify-center px-6 py-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <h2 className="mt-6 text-center font-bold leading-9 tracking-tight">Conne<span className="text-accent">xion</span></h2>
                 </div>
@@ -51,7 +50,7 @@ const Connexion = ({ ...props }) => {
                         </div>
                     </form>
 
-                    <p className="mt-10 text-center text-sm text-gray-500">
+                    <p className="mt-5 text-center text-sm">
                         <a href="#" onClick={handleInscriptionclick} className="hover:text-accent cursor-pointer">Créer un compte</a>
                     </p>
                 </div>
