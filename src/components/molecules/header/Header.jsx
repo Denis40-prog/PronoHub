@@ -11,9 +11,8 @@ const Header = ({ ...props }) => {
         <div className={Style.navBar}>
             <img src={logo} alt="logo" className={Style.image}></img>
             <nav className={Style.menu}>
-                <Button buttonTitle="Informations" style={Style.navButton} action={() => handleButtonClick("Informations")}/>
+                <Button buttonTitle="Accueil" style={Style.navButton} action={() => handleButtonClick("Accueil")}/>
                 <Button buttonTitle="Contact" style={Style.navButton} action={() => handleButtonClick("Contact")}/>
-                <Button buttonTitle="A propos" style={Style.navButton} action={() => handleButtonClick("A_propos")}/>
                 <Button buttonTitle="Connexion" style={Style.navButton} action={() => handleButtonClick("Connexion")}/>
             </nav>
         </div>

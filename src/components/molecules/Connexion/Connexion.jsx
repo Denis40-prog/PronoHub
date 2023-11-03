@@ -46,7 +46,7 @@ const Connexion = ({ ...props }) => {
                         </div>
 
                         <div className="flex w-full place-content-center">
-                            <button type="submit" disabled={!emailValue || !passwordValue} className="flex w-fit font-semibold justify-center text-black rounded-3xl disabled:opacity-25 text-sm px-5 py-2.5 mr-2 mb-2 bg-accent">Se connecter</button>
+                            <button type="submit" disabled={!emailValue || !passwordValue} className="flex w-fit mt-5 font-semibold justify-center text-black rounded-3xl disabled:opacity-25 text-sm px-5 py-2.5 mr-2 mb-2 bg-accent">Se connecter</button>
                         </div>
                     </form>
 

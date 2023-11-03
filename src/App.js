@@ -5,9 +5,7 @@ import {CookiesProvider, useCookies} from "react-cookie"
 import FirstScreen from './components/organisms/FirstScreen';
 import Connexion from './components/molecules/Connexion/Connexion';
 import Inscription from './components/molecules/Inscription/Inscription';
-import Informations from './components/molecules/Infomations/Informations'; // Assurez-vous que le chemin est correct
 import Contact from './components/molecules/Contact/Contact';
-import PersonnalCard from './components/atomes/PersonnalCard/PersonnalCard';
 import Accueil from './components/molecules/Accueil/Accueil';
 
 function App() {
@@ -35,14 +33,8 @@ function App() {
       case "Inscription":
         setActivePage(<Inscription setPage={changePage} />);
         break;
-      case "Informations":
-        setActivePage(<Informations />);
-        break;
       case "Contact":
         setActivePage(<Contact />);
-        break;
-      case "A_propos":
-        setActivePage(<PersonnalCard />);
         break;
       case "Accueil":
         setActivePage(<Accueil setPage={changePage} />);
@@ -56,7 +48,7 @@ function App() {
   return (
     <CookiesProvider>
       <div className="App">
-        <body className='bg-black h-screen pb-10'>
+        <body className='bg-black min-h-screen pb-10'>
           {cookies.restriction ? <FirstScreen /> : <> <Header setPage={changePage} /> {activePage} </>}
         </body>
       </div>
