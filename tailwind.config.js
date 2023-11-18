@@ -13,7 +13,10 @@ module.exports = {
       white: '#FFFFFF'
     },
     boxShadow: {
-      caca: 'rgba(0, 0, 0, 0.35) 0px 0px 15px'
+      caca: '0px 0px 15px'
+    },
+    dropShadow: {
+      logo: '0px 0px 35px #FFA31A'
     },
     plugins: [],
   }
