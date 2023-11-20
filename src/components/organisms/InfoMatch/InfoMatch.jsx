@@ -6,6 +6,7 @@ import logoTeam2 from "../../../assets/images/logo_equipes/ASM.png";
 import { Tooltip } from 'react-tooltip';
 import Popup from "../PopUp";
 import { FaAngleLeft } from "react-icons/fa6";
+import Slogan from "../../atomes/Slogan/Slogan";
 
 const InfoMatch = ({...props}) => {
     const [matchInfo, setMatchInfo] = useState(InfosMatch);
@@ -33,9 +34,9 @@ const InfoMatch = ({...props}) => {
 
     return (
         <div>
-            <h5 className="text-white italic ml-8 mt-4">C’est pas la taille de la mise qui compte! <span className="text-xs">C'est comment on s'en sert</span></h5>
+            <Slogan ></Slogan >
             <h2 className="flex col-auto ml-3 mt-10 items-center">
-                <FaAngleLeft className="text-accent"
+                <FaAngleLeft className="text-accent cursor-pointer"
                     onClick={() => props.setPage("Accueil")}
                     data-tooltip-id="getBack"
                     data-tooltip-content={'Retour'}/>

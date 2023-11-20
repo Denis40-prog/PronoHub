@@ -1,6 +1,6 @@
 import React from 'react'
-import Logo from '../../assets/images/LogoPronoHubNoir.png'
-import ButtonFirstScreen from '../molecules/ButtonFirstSCreen/ButtonFirstScreen'
+import Logo from '../../../assets/images/LogoPronoHubNoir.png'
+import ButtonFirstScreen from '../../molecules/ButtonFirstSCreen/ButtonFirstScreen'
 import { useCookies } from 'react-cookie';
 
 function FirstScreen() {
