@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import logo from "../../../assets/images/LogoPronohub.png";
+import InscriptionRequest from "../../../toolkit/Inscription";
+import { postRequest } from "../../../services/ApiCallService";
 
 const Inscription = ({ ...props }) => {
     const [emailValue, setEmailValue] = useState('');
@@ -7,6 +8,7 @@ const Inscription = ({ ...props }) => {
     const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
     const [firstnameValue, setFirstnameValue] = useState('');
     const [lastnameValue, setLastnameValue] = useState('');
+    const [inscriptionRequest, setInscriptionRequest] = useState(InscriptionRequest);
 
     const handleEmailChange = (e) => {
       setEmailValue(e.target.value);
@@ -28,9 +30,29 @@ const Inscription = ({ ...props }) => {
         setLastnameValue(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        props.setPage("Accueil");
+        const request = {
+            email: emailValue,
+            password: passwordValue,
+            name: firstnameValue,
+            lastname: lastnameValue,
+            username: firstnameValue + lastnameValue
+        }
+        setInscriptionRequest(request);
+
+        try {
+            const response = await postRequest('http://localhost:8000/register', inscriptionRequest)
+      
+            if ((await response.status === 201)) {
+                console.log('Request successful');
+                props.setPage("Accueil");
+            } else {
+                console.error('Request failed', response);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     const handleConnexionclick = () => {
