@@ -2,11 +2,11 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/molecules/header/Header';
 import {CookiesProvider, useCookies} from "react-cookie"
-import FirstScreen from './components/organisms/FirstScreen';
+import FirstScreen from './components/organisms/FirstScreen/FirstScreen';
 import Connexion from './components/molecules/Connexion/Connexion';
 import Inscription from './components/molecules/Inscription/Inscription';
 import Contact from './components/molecules/Contact/Contact';
-import Accueil from './components/molecules/Accueil/Accueil';
+import Accueil from './components/organisms/Accueil/Accueil';
 import InfoMatch from './components/organisms/InfoMatch/InfoMatch';
 
 function App() {
