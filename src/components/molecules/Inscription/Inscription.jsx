@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import InscriptionRequest from "../../../toolkit/Inscription";
 import { postRequest } from "../../../services/ApiCallService";
 
 const Inscription = ({ ...props }) => {
@@ -8,7 +7,6 @@ const Inscription = ({ ...props }) => {
     const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
     const [firstnameValue, setFirstnameValue] = useState('');
     const [lastnameValue, setLastnameValue] = useState('');
-    const [inscriptionRequest, setInscriptionRequest] = useState(InscriptionRequest);
 
     const handleEmailChange = (e) => {
       setEmailValue(e.target.value);
@@ -39,14 +37,13 @@ const Inscription = ({ ...props }) => {
             lastname: lastnameValue,
             username: firstnameValue + lastnameValue
         }
-        setInscriptionRequest(request);
 
         try {
-            const response = await postRequest('http://localhost:8000/register', inscriptionRequest)
+            const response = await postRequest('http://localhost:8000/register', request);
       
-            if ((await response.status === 201)) {
+            if ((response.status === 201)) {
                 console.log('Request successful');
-                props.setPage("Accueil");
+                props.setPage("Connexion");
             } else {
                 console.error('Request failed', response);
             }
