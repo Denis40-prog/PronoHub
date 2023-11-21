@@ -20,6 +20,7 @@ const InfoMatch = ({...props}) => {
                     console.log('Request successful');
                     response.json().then(data => {
                         console.log('data ', data);
+                        props.openSnackBar('Les informations sur le match ont bien été récupérées')
                         setMatchInfo(data);
                     }, error => {
                         console.error('Error parsing JSON:', error);
