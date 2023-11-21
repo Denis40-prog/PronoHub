@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { getRequest } from '../../../services/ApiCallService'
-import SnackBar from '../../atomes/SnackBar/SnackBar'
 
 const Accueil = ({ ...props}) => {
   const [tableTest, setTableTest] = useState([])
 
   const payload_cat = [
     {
-      id : 1,
       name : 'Rugby'
     },
     {
-      id : 2,
       name : 'Foot'
+    },
+    {
+      name: 'Basket'
     }
   ]
 

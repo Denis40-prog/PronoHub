@@ -62,7 +62,7 @@ function App() {
         setActivePage(<Accueil setPage={changePage}  setMatchId={changeMatchId}/>);
         break;
       case "InfosMatch":
-        setActivePage(<InfoMatch setPage={changePage} matchId={idMatch}/>);
+        setActivePage(<InfoMatch setPage={changePage} matchId={idMatch} openSnackBar={openSnackBar}/>);
         break;
       default:
         setActivePage(<Connexion setPage={changePage} openSnackBar={openSnackBar}/>);
