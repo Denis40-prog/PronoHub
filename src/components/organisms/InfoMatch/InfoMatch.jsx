@@ -1,26 +1,37 @@
 import React, { useEffect, useState } from "react";
-import InfosMatch from "../../../toolkit/InfosMatch";
-import banner from "../../../assets/images/Bannieres/louasm.jpeg";
 import logoTeam1 from "../../../assets/images/logo_equipes/LOU.png";
 import logoTeam2 from "../../../assets/images/logo_equipes/ASM.png";
 import { Tooltip } from 'react-tooltip';
 import Popup from "../PopUp";
 import { FaAngleLeft } from "react-icons/fa6";
 import Slogan from "../../atomes/Slogan/Slogan";
+import { getRequest } from "../../../services/ApiCallService";
 
 const InfoMatch = ({...props}) => {
-    const [matchInfo, setMatchInfo] = useState(InfosMatch);
+    const [matchInfo, setMatchInfo] = useState([]);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [teamToBet, setTeamToBet] = useState("");
 
     useEffect(() => {
-        const test = {
-            id: 1,
-            teamId1: "Lou",
-            teamId2: "ASM",
-            banner: banner
+        async function fetchData() {
+            try {
+                const response = await getRequest(`http://localhost:8000/api/games/${props.matchId}`);
+                if (response.status === 200) {
+                    console.log('Request successful');
+                    response.json().then(data => {
+                        console.log('data ', data);
+                        setMatchInfo(data);
+                    }, error => {
+                        console.error('Error parsing JSON:', error);
+                    });
+                } else {
+                    console.error(`Request failed: ${response.status}`, response);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
         }
-        setMatchInfo(test);
+        fetchData();
     }, [])
 
     const openPopup = (team) => {
