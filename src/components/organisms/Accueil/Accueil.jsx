@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import banner from '../../../assets/images/Bannieres/louasm.jpeg'
+import { getRequest } from '../../../services/ApiCallService'
 
 const Accueil = ({ ...props}) => {
 
@@ -51,19 +52,32 @@ const Accueil = ({ ...props}) => {
 
 
   const payload_cat = [
-    
-      {
-        id : 1,
-        name : 'Rugby'
-      },
-      {
-        id : 2,
-        name : 'Foot'
+    {
+      id : 1,
+      name : 'Rugby'
+    },
+    {
+      id : 2,
+      name : 'Foot'
     }
   ]
 
   useEffect( () => {
-    
+    // console.log('Accueil');
+    async function fetchData() {
+      try {
+        const response = await getRequest('http://localhost:8000/api/games');
+        if ((response.status === 200)) {
+          console.log('Request successful');
+          console.log(response.data);
+        } else {
+          console.error(`Request failed: ${response.status}`, response);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+    fetchData();
   }, [])
 
   const handleButtonClick = (pageName) => {
@@ -74,8 +88,6 @@ const Accueil = ({ ...props}) => {
     <div>
       <div className='py-5'>
         { payload_cat.map( (cat) => {
-                  
-                  console.log(payload_all_match.filter( (match) => match.cat === cat.name).length > 0)
           return(
             <div className="flex place-content-center flex-col ml-10" key={cat.name}>
               <div className="w-fit text-center mt-5 font-semibold rounded-lg disabled:opacity-25 text-sm px-5 text-white py-2.5 mr-2 mb-2 bg-accent"><p>{cat.name}</p></div>
