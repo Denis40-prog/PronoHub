@@ -28,7 +28,16 @@ const Connexion = ({ ...props }) => {
       
             if ((response.status === 200)) {
                 console.log('Request successful');
-                props.setPage("Accueil");
+                response.json().then(data => {
+                    if (data && data.token) {
+                        localStorage.setItem('token', data.token);
+                        props.setPage("Accueil");
+                    } else {
+                        console.error('Token not found in response data:', data);
+                    }
+                }).catch(error => {
+                    console.error('Error parsing JSON:', error);
+                });
             } else {
                 console.error('Request failed', response);
             }
