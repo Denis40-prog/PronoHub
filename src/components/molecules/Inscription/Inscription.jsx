@@ -42,6 +42,7 @@ const Inscription = ({ ...props }) => {
       
             if ((response.status === 201)) {
                 console.log('Request successful');
+                props.openSnackBar('Inscription Réussie');
                 props.setPage("Connexion");
             } else {
                 console.error('Request failed', response);

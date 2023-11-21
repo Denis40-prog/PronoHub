@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getRequest } from '../../../services/ApiCallService'
+import SnackBar from '../../atomes/SnackBar/SnackBar'
 
 const Accueil = ({ ...props}) => {
   const [tableTest, setTableTest] = useState([])
@@ -37,9 +38,10 @@ const Accueil = ({ ...props}) => {
     fetchData();
   }, []);
 
-  const handleButtonClick = (pageName) => {
+  const handleButtonClick = (pageName, id) => {
     props.setPage(pageName);
-};
+    props.setMatchId(id);
+  };
 
   return (
     <div>
@@ -53,7 +55,7 @@ const Accueil = ({ ...props}) => {
                   tableTest.filter( (match) => match.idCategory.name === cat.name).length > 0
                   ? tableTest.filter((match) => match.idCategory.name === cat.name).map((match) => {
                     return(
-                      <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer' onClick={() => handleButtonClick("InfosMatch")}>
+                      <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer' onClick={() => handleButtonClick("InfosMatch", match.id)}>
                         <img src={match.banner} alt='logo_match'/>
                         <p className='mt-8'> {match.teamId1.name} VS { match.teamId2.name}</p>
                       </div>
@@ -68,7 +70,6 @@ const Accueil = ({ ...props}) => {
         }
       </div>
     </div>
-
   )
 }
 

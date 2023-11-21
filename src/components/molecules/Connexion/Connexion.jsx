@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { postRequest } from "../../../services/ApiCallService";
+import SnackBar from "../../atomes/SnackBar/SnackBar";
 
 const Connexion = ({ ...props }) => {
     const handleInscriptionclick = () => {
@@ -31,6 +32,7 @@ const Connexion = ({ ...props }) => {
                 response.json().then(data => {
                     if (data && data.token) {
                         localStorage.setItem('token', data.token);
+                        props.openSnackBar('Connexion Réussie');
                         props.setPage("Accueil");
                     } else {
                         console.error('Token not found in response data:', data);
