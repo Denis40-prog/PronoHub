@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { postRequest } from "../../../services/ApiCallService";
 
 const Connexion = ({ ...props }) => {
     const handleInscriptionclick = () => {
@@ -15,10 +16,27 @@ const Connexion = ({ ...props }) => {
         setPasswordValue(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        props.setPage("Accueil");
+        const request = {
+            email: emailValue,
+            password: passwordValue
+        }
+
+        try {
+            const response = await postRequest('http://localhost:8000/api/login_check', request);
+      
+            if ((response.status === 200)) {
+                console.log('Request successful');
+                props.setPage("Accueil");
+            } else {
+                console.error('Request failed', response);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
+
     return(
         <div className="flex justify-center">
           <div className="shadow-caca shadow-secondary rounded-xl w-2/6 mt-20 bg-primary">

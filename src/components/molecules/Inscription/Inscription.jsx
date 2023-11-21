@@ -34,8 +34,7 @@ const Inscription = ({ ...props }) => {
             email: emailValue,
             password: passwordValue,
             name: firstnameValue,
-            lastname: lastnameValue,
-            username: firstnameValue + lastnameValue
+            lastname: lastnameValue
         }
 
         try {
