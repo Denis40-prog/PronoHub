@@ -1,55 +1,8 @@
-import React, { useEffect } from 'react'
-import banner from '../../../assets/images/Bannieres/louasm.jpeg'
+import React, { useEffect, useState } from 'react'
 import { getRequest } from '../../../services/ApiCallService'
 
 const Accueil = ({ ...props}) => {
-
-  const payload_all_match = [
-    {
-      id : 1,
-    teamName1 : "LOU",
-    teamName2 : "ASM",
-    banner : banner,
-    cat : 'Rugby',
-    _link : '/'
-    },
-    {
-      id : 2,
-    teamName1 : "LOU",
-    teamName2 : "ASM",
-    banner : banner,
-    cat : 'Rugby',
-    },
-    {
-      id : 3,
-    teamName1 : "LOU",
-    teamName2 : "ASM",
-    banner : banner,
-    cat : 'Rugby',
-    },
-    {
-      id : 4,
-    teamName1 : "LOU",
-    teamName2 : "ASM",
-    banner : banner,
-    cat : 'Rugby',
-    },
-    {
-      id : 5,
-    teamName1 : "LOU",
-    teamName2 : "ASM",
-    banner : banner,
-    cat : 'Rugby',
-    },
-    {
-      id : 6,
-    teamName1 : "LOU",
-    teamName2 : "ASM",
-    banner : banner,
-    cat : 'Rugby',
-    }
-  ]
-
+  const [tableTest, setTableTest] = useState([])
 
   const payload_cat = [
     {
@@ -62,14 +15,18 @@ const Accueil = ({ ...props}) => {
     }
   ]
 
-  useEffect( () => {
-    // console.log('Accueil');
+  useEffect(() => {
     async function fetchData() {
       try {
         const response = await getRequest('http://localhost:8000/api/games');
-        if ((response.status === 200)) {
+        if (response.status === 200) {
           console.log('Request successful');
-          console.log(response.data);
+          response.json().then(data => {
+            console.log('data ', data['hydra:member']);
+            setTableTest(data['hydra:member']);
+          }, error => {
+            console.error('Error parsing JSON:', error);
+          });
         } else {
           console.error(`Request failed: ${response.status}`, response);
         }
@@ -78,7 +35,7 @@ const Accueil = ({ ...props}) => {
       }
     }
     fetchData();
-  }, [])
+  }, []);
 
   const handleButtonClick = (pageName) => {
     props.setPage(pageName);
@@ -93,12 +50,12 @@ const Accueil = ({ ...props}) => {
               <div className="w-fit text-center mt-5 font-semibold rounded-lg disabled:opacity-25 text-sm px-5 text-white py-2.5 mr-2 mb-2 bg-accent"><p>{cat.name}</p></div>
               <div className='overflow-x-auto space-x-24 mt-8 flex-row flex text-white'>
                 {
-                  payload_all_match.filter( (match) => match.cat === cat.name).length > 0
-                  ? payload_all_match.filter((match) => match.cat === cat.name).map((match) => {
+                  tableTest.filter( (match) => match.idCategory.name === cat.name).length > 0
+                  ? tableTest.filter((match) => match.idCategory.name === cat.name).map((match) => {
                     return(
                       <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer' onClick={() => handleButtonClick("InfosMatch")}>
-                        <img src={match.banner}/> 
-                        <p className='mt-8'> {match.teamName1} VS { match.teamName2}</p>
+                        <img src={match.banner} alt='logo_match'/>
+                        <p className='mt-8'> {match.teamId1.name} VS { match.teamId2.name}</p>
                       </div>
                     )
                   })
