@@ -18,15 +18,18 @@ const Header = ({ ...props }) => {
     return(
         <div className={Style.navBar}>
             <img src={logo} alt="logo" className={Style.image} onClick={() => handleButtonClick("Accueil")}></img>
-            <nav className={Style.menu}>
-                <Button buttonTitle="Accueil" style={Style.navButton} action={() => handleButtonClick("Accueil")}/>
-                <Button buttonTitle="Contact" style={Style.navButton} action={() => handleButtonClick("Contact")}/>
-                {
-                    props.isLoggedIn() ? 
-                    <Button buttonTitle="Deconnexion" style={Style.navButton} action={handleUnlogClick}/> :
+            {
+                props.isLoggedIn() ? 
+                <nav className={Style.menu}>
+                    <Button buttonTitle="Accueil" style={Style.navButton} action={() => handleButtonClick("Accueil")}/>
+                    <Button buttonTitle="Contact" style={Style.navButton} action={() => handleButtonClick("Contact")}/>
+                    <Button buttonTitle="Deconnexion" style={Style.navButton} action={handleUnlogClick}/>
+                </nav> :
+                <nav className={Style.menu}>
+                    <Button buttonTitle="Contact" style={Style.navButton} action={() => handleButtonClick("Contact")}/>
                     <Button buttonTitle="Connexion" style={Style.navButton} action={() => handleButtonClick("Connexion")}/>
-                }
-            </nav>
+                </nav>
+            }
         </div>
     )
 }
