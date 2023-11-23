@@ -33,6 +33,7 @@ const Connexion = ({ ...props }) => {
                     if (data && data.token) {
                         localStorage.setItem('token', data.token);
                         localStorage.setItem('decodedToken', JSON.stringify(jwtDecode(data.token)));
+                        localStorage.setItem('usersId', data.user_id.id);
                         props.openSnackBar('Connexion Réussie');
                         console.log('stored decoded token: ', JSON.parse(localStorage.getItem('decodedToken')));
                         props.loggedInSetter();
