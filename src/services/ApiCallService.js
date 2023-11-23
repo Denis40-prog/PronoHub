@@ -3,6 +3,7 @@ export const postRequest = (url, data) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
         body: JSON.stringify(data),
     });
