@@ -31,10 +31,10 @@ const Accueil = ({ ...props}) => {
           } else {
             console.error(`Request failed: ${response.status}`, response);
           }
-        } else {
-          console.error('Request failed', response);
-          props.openSnackBar('Une erreur est survenue lors de l\'enregistrement du pari');
-      }
+          } else {
+            console.error('Request failed', response);
+            props.openSnackBar('Une erreur est survenue lors de l\'enregistrement du pari');
+          }
       } catch (error) {
         console.error('Error:', error);
       }
