@@ -20,16 +20,21 @@ const Accueil = ({ ...props}) => {
     async function fetchData() {
       try {
         const response = await getRequest('http://localhost:8000/api/games');
-        if (response.status === 200) {
-          console.log('Request successful');
-          response.json().then(data => {
-            setTableTest(data['hydra:member']);
-          }, error => {
-            console.error('Error parsing JSON:', error);
-          });
-        } else {
-          console.error(`Request failed: ${response.status}`, response);
-        }
+        if(response !== undefined) {
+          if (response.status === 200) {
+            console.log('Request successful');
+            response.json().then(data => {
+              setTableTest(data['hydra:member']);
+            }, error => {
+              console.error('Error parsing JSON:', error);
+            });
+          } else {
+            console.error(`Request failed: ${response.status}`, response);
+          }
+          } else {
+            console.error('Request failed', response);
+            props.openSnackBar('Une erreur est survenue lors de l\'enregistrement du pari');
+          }
       } catch (error) {
         console.error('Error:', error);
       }
