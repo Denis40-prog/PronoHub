@@ -81,7 +81,7 @@ function App() {
     <CookiesProvider>
       <div className="App">
         <body className='bg-black min-h-screen pb-10'>
-          {cookies.restriction ? <FirstScreen /> : <> <Header setPage={changePage} isLoggedIn={setIsLogged}/> {activePage} </>}
+          {cookies.restriction ? <FirstScreen /> : <> <Header setPage={changePage} isLoggedIn={setIsLogged} openSnackBar={openSnackBar}/> {activePage} </>}
         </body>
         {open ? <SnackBar msg={snackBarMsg} /> : null}
       </div>
