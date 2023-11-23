@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { postRequest } from "../../../services/ApiCallService";
-import SnackBar from "../../atomes/SnackBar/SnackBar";
+import { jwtDecode } from "jwt-decode"
 
 const Connexion = ({ ...props }) => {
     const handleInscriptionclick = () => {
@@ -32,19 +32,26 @@ const Connexion = ({ ...props }) => {
                 response.json().then(data => {
                     if (data && data.token) {
                         localStorage.setItem('token', data.token);
+                        localStorage.setItem('decodedToken', JSON.stringify(jwtDecode(data.token)));
                         props.openSnackBar('Connexion Réussie');
+                        console.log('stored decoded token: ', JSON.parse(localStorage.getItem('decodedToken')));
+                        props.loggedInSetter();
                         props.setPage("Accueil");
                     } else {
                         console.error('Token not found in response data:', data);
+                        props.openSnackBar('Une erreur est survenue lors de la connexion');
                     }
                 }).catch(error => {
                     console.error('Error parsing JSON:', error);
+                    props.openSnackBar('Une erreur est survenue lors de la connexion');
                 });
             } else {
-                console.error('Request failed', response);
+                    props.openSnackBar('Une erreur est survenue lors de la connexion');
+                    console.error('Request failed', response);
             }
         } catch (error) {
             console.error('Error:', error);
+            props.openSnackBar('Une erreur est survenue lors de la connexion');
         }
     };
 

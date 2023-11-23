@@ -11,8 +11,22 @@ import InfoMatch from './components/organisms/InfoMatch/InfoMatch';
 import SnackBar from './components/atomes/SnackBar/SnackBar';
 
 function App() {
-  const [activePage, setActivePage] = useState(null); // Initialisez activePage à null pour éviter des problèmes
-  const [pageName, setPageName] = useState("Connexion");
+  function setIsLogged() {
+    console.log('entering in setislogged with: ', localStorage.getItem('decodedToken'));
+    if(localStorage.getItem('decodedToken') !== null){
+      if(JSON.parse(localStorage.getItem('decodedToken')).exp > Date.now() / 1000){
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  const [activePage, setActivePage] = useState(null);
+  // const [isUserLogged, setIsUserLogged] = useState(false);
+  const [pageName, setPageName] = useState(setIsLogged() ? "Accueil" : "Connexion");
   const [cookies, setCookie] = useCookies(['restriction']);
   const [idMatch, setIdMatch] = useState(null);
   const [open, setOpen] = useState(false);
@@ -50,7 +64,7 @@ function App() {
    const selectPage = () => {
     switch (pageName) {
       case "Connexion":
-        setActivePage(<Connexion setPage={changePage} openSnackBar={openSnackBar}/>);
+        setActivePage(<Connexion setPage={changePage} openSnackBar={openSnackBar} loggedInSetter={setIsLogged}/>);
         break;
       case "Inscription":
         setActivePage(<Inscription setPage={changePage} openSnackBar={openSnackBar}/>);
@@ -65,7 +79,7 @@ function App() {
         setActivePage(<InfoMatch setPage={changePage} matchId={idMatch} openSnackBar={openSnackBar}/>);
         break;
       default:
-        setActivePage(<Connexion setPage={changePage} openSnackBar={openSnackBar}/>);
+        setActivePage(<Connexion setPage={changePage} openSnackBar={openSnackBar} loggedInSetter={setIsLogged}/>);
         break;
     }
   }

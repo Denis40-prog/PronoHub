@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logoTeam1 from "../../../assets/images/logo_equipes/LOU.png";
-import logoTeam2 from "../../../assets/images/logo_equipes/ASM.png";
 import { Tooltip } from 'react-tooltip';
 import Popup from "../PopUp";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -67,7 +65,7 @@ const InfoMatch = ({...props}) => {
                     <div className="flex flex-col mt-10">
                         <div className="grid grid-flow-col justify-stretch mt-10 h-fit w-full place-items-center">
                             <div className="flex flex-col space-y-8">
-                                <img src={logoTeam1} alt="" className="h-72 drop-shadow-logo" />
+                                <img src={matchInfo.teamId1.logo} alt="" className="h-72 drop-shadow-logo" />
                                 <button
                                     className="bg-accent text-white font-bold py-2 px-4 rounded"
                                     onClick={() => openPopup(matchInfo.teamId1.name)}
@@ -80,7 +78,7 @@ const InfoMatch = ({...props}) => {
                             </div>
                             <p className="text-accent text-6xl">VS</p>
                             <div className="flex flex-col space-y-4">
-                                <img src={logoTeam2} alt="" className="h-72 drop-shadow-logo" />
+                                <img src={matchInfo.teamId2.logo} alt="" className="h-72 drop-shadow-logo" />
                                 <button
                                     className="bg-accent text-white font-bold py-2 px-4 rounded"
                                     onClick={() => openPopup(matchInfo.teamId2.name)}
