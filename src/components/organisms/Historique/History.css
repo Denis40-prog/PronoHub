@@ -1,0 +1,11 @@
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+    }
+
+}
+
+.fadeIn {
+    animation-name: slideLeft ;
+    animation-duration: 2s;
+}
