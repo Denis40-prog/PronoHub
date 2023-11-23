@@ -23,6 +23,7 @@ const Connexion = ({ ...props }) => {
             email: emailValue,
             password: passwordValue
         }
+        console.log(request);
 
         try {
             const response = await postRequest('http://localhost:8000/api/login_check', request);
@@ -35,7 +36,6 @@ const Connexion = ({ ...props }) => {
                         localStorage.setItem('decodedToken', JSON.stringify(jwtDecode(data.token)));
                         localStorage.setItem('usersId', data.user_id.id);
                         props.openSnackBar('Connexion Réussie');
-                        console.log('stored decoded token: ', JSON.parse(localStorage.getItem('decodedToken')));
                         props.loggedInSetter();
                         props.setPage("Accueil");
                     } else {
