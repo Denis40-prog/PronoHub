@@ -12,7 +12,6 @@ import SnackBar from './components/atomes/SnackBar/SnackBar';
 
 function App() {
   function setIsLogged() {
-    console.log('entering in setislogged with: ', localStorage.getItem('decodedToken'));
     if(localStorage.getItem('decodedToken') !== null){
       if(JSON.parse(localStorage.getItem('decodedToken')).exp > Date.now() / 1000){
         return true;
@@ -25,7 +24,6 @@ function App() {
   }
 
   const [activePage, setActivePage] = useState(null);
-  // const [isUserLogged, setIsUserLogged] = useState(false);
   const [pageName, setPageName] = useState(setIsLogged() ? "Accueil" : "Connexion");
   const [cookies, setCookie] = useCookies(['restriction']);
   const [idMatch, setIdMatch] = useState(null);
@@ -56,10 +54,6 @@ function App() {
     console.log(id);
     setIdMatch(id);
   }
-
-  useEffect(() => {
-    console.log('idMatch: ', idMatch);
-  }, [idMatch]);
   
    const selectPage = () => {
     switch (pageName) {

@@ -23,7 +23,6 @@ const Accueil = ({ ...props}) => {
         if (response.status === 200) {
           console.log('Request successful');
           response.json().then(data => {
-            console.log('data ', data['hydra:member']);
             setTableTest(data['hydra:member']);
           }, error => {
             console.error('Error parsing JSON:', error);
