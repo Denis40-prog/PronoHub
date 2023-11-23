@@ -16,7 +16,8 @@ module.exports = {
       caca: '0px 0px 15px'
     },
     dropShadow: {
-      logo: '0px 0px 35px #FFA31A'
+      logo: '0px 0px 35px #FFA31A',
+      banner: '0px 0px 15px #FFA31A'
     },
     plugins: [],
   }

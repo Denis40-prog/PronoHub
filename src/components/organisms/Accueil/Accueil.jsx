@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { getRequest } from '../../../services/ApiCallService'
+import React, { useEffect } from 'react'
+import banner from '../../../assets/images/Bannieres/louasm.jpeg'
+import History from '../Historique/History'
 
 const Accueil = ({ ...props}) => {
   const [tableTest, setTableTest] = useState([])
 
   const payload_cat = [
-    {
-      name : 'Rugby'
-    },
-    {
-      name : 'Foot'
-    },
-    {
-      name: 'Basket'
+    
+      {
+        id : 1,
+        name : 'Rugby'
+      },
+      {
+        id : 2,
+        name : 'Rugby'
     }
   ]
 
@@ -43,20 +44,22 @@ const Accueil = ({ ...props}) => {
   };
 
   return (
+    <>
+    <History />
     <div>
       <div className='py-5'>
         { payload_cat.map( (cat) => {
           return(
-            <div className="flex place-content-center flex-col ml-10" key={cat.name}>
-              <div className="w-fit text-center mt-5 font-semibold rounded-lg disabled:opacity-25 text-sm px-5 text-white py-2.5 mr-2 mb-2 bg-accent"><p>{cat.name}</p></div>
-              <div className='overflow-x-auto space-x-24 mt-8 flex-row flex text-white'>
+            <div className="flex place-content-center flex-col" key={cat.id}>
+              <div className="ml-10 w-fit text-center mt-5 font-semibold rounded-lg disabled:opacity-25 text-sm px-5 text-white py-2.5 mr-2 mb-2 bg-accent"><p>{cat.name}</p></div>
+              <div className='overflow-x-scroll space-x-24 pt-8 flex-row flex text-white'>
                 {
                   tableTest.filter( (match) => match.idCategory.name === cat.name).length > 0
                   ? tableTest.filter((match) => match.idCategory.name === cat.name).map((match) => {
                     return(
-                      <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer' onClick={() => handleButtonClick("InfosMatch", match.id)}>
-                        <img src={match.banner} alt='logo_match'/>
-                        <p className='mt-8'> {match.teamId1.name} VS { match.teamId2.name}</p>
+                      <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer drop-shadow-banner pl-5' onClick={() => handleButtonClick("InfosMatch")}>
+                        <img src={match.banner}/> 
+                        <p className='mt-8'> {match.teamName1} VS { match.teamName2}</p>
                       </div>
                     )
                   })
@@ -69,6 +72,7 @@ const Accueil = ({ ...props}) => {
         }
       </div>
     </div>
+    </>
   )
 }
 
