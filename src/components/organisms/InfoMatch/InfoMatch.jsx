@@ -6,6 +6,7 @@ import Slogan from "../../atomes/Slogan/Slogan";
 import { getRequest } from "../../../services/ApiCallService";
 import { postRequest } from "../../../services/ApiCallService";
 import Loader from "../../molecules/Loader/Loader";
+import { FaCheck, FaFrog, FaCross } from "react-icons/fa6";
 
 const InfoMatch = ({...props}) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -26,16 +27,18 @@ const InfoMatch = ({...props}) => {
                 }, error => {
                     console.error('Error parsing JSON:', error);
                     setIsLoading(false);
+                    window.location.reload();
                 });
             } else {
                 console.error(`Request failed: ${response.status}`, response);
                 setIsLoading(false);
+                window.location.reload();
             }
         } catch (error) {
             console.error('Error:', error);
             setIsLoading(false);
+            window.location.reload();
         }
-        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -137,8 +140,12 @@ const InfoMatch = ({...props}) => {
                             {matchInfo.bets.map((bet) => {
                                 return (
                                     <tr key={bet.id}>
-                                        {/* <td className="border-accent px-4 py-2">{bet.users[0].firstname}</td> */}
-                                        <td className="border-accent px-4 py-2 text-white">{bet}</td>
+                                        <td className="border-accent px-4 py-2 text-white">{bet.users[0].name} {bet.users[0].lastname}</td>
+                                        <td className="border-accent px-4 py-2 text-white">{bet.team.name}</td>
+                                        <td className="border-accent px-4 py-2 text-white"><img className="h-6" src={bet.team.logo} alt="teamLogo"/></td>
+                                        <td className="border-accent px-4 py-2 w-fit text-center">
+                                            {bet.status === 'valid' ? <FaCheck className="text-validBet"/> : bet.status === 'pending' ? <FaFrog className="text-accent"/> : <FaCross className="text-invalidBet"/>}
+                                        </td>
                                     </tr>
                                 )
                             })}
