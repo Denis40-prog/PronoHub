@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import History from '../Historique/History'
 import { getRequest } from '../../../services/ApiCallService'
 import Loader from '../../molecules/Loader/Loader'
+import { Tooltip } from 'react-tooltip';
 
 const Accueil = ({ ...props}) => {
   const [payload_match, setPayloadMatch] = useState([])
   const [isLoading, setIsLoading] = useState(true);
+  const [userScore, setUserScore] = useState(0);
 
   const payload_cat = [
     
@@ -45,8 +47,27 @@ const Accueil = ({ ...props}) => {
     setIsLoading(false);
   }
 
+  async function fetchScore() {
+    try {
+        const response = await getRequest(`http://localhost:8000/score/${localStorage.getItem('usersId')}`);
+        if (response.status === 200) {
+            console.log('Request successful');
+            response.json().then(data => {
+                setUserScore(data.score);
+            }, error => {
+                console.error('Error parsing JSON:', error);
+            });
+        } else {
+            console.error(`Request failed: ${response.status}`, response);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
   useEffect(() => {
     fetchData();
+    fetchScore();
   }, []);
 
   const handleButtonClick = (pageName, id) => {
@@ -61,6 +82,7 @@ const Accueil = ({ ...props}) => {
         <History openSnackBar={props.openSnackBar}/>
         <div>
           <div className='py-5'>
+            <p className='text-white text-2xl px-5 text-right mr-16 mt-2'>Votre score: <span className='text-accent'>{userScore}</span></p>
             { payload_cat.map((cat) => {
               return(
                 <div className="flex place-content-center flex-col" key={cat.id}>
@@ -72,7 +94,7 @@ const Accueil = ({ ...props}) => {
                         return(
                           <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer drop-shadow-banner pl-5' onClick={() => handleButtonClick("InfosMatch", match.id)}>
                             <img src={match.banner} alt='Match banner'/> 
-                            <p className='mt-8'> {match.teamId1.name} VS { match.teamId2.name}</p>
+                            <p className='mt-8'> {match.teamId1.name} <span className='text-accent'>VS</span> { match.teamId2.name}</p>
                           </div>
                         )
                       })
