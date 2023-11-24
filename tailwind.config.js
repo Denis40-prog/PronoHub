@@ -10,7 +10,9 @@ module.exports = {
       secondary: '#808080',
       accent: '#FFA31A',
       black: '#000000',
-      white: '#FFFFFF'
+      white: '#FFFFFF',
+      validBet: '#00FF00',
+      invalidBet: '#FF0000'
     },
     boxShadow: {
       caca: '0px 0px 15px'
