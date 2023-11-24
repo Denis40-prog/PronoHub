@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react'
-import banner from '../../../assets/images/Bannieres/louasm.jpeg'
+import React, { useEffect, useState } from 'react'
 import History from '../Historique/History'
+import { getRequest } from '../../../services/ApiCallService'
 
 const Accueil = ({ ...props}) => {
   const [tableTest, setTableTest] = useState([])
 
   const payload_cat = [
     
-      {
-        id : 1,
-        name : 'Rugby'
-      },
-      {
-        id : 2,
-        name : 'Rugby'
+    {
+      name: 'Rugby'
+    },
+    {
+      name: 'Foot'
+    },
+    {
+      name: 'Basket'
     }
   ]
 
@@ -21,16 +22,21 @@ const Accueil = ({ ...props}) => {
     async function fetchData() {
       try {
         const response = await getRequest('http://localhost:8000/api/games');
-        if (response.status === 200) {
-          console.log('Request successful');
-          response.json().then(data => {
-            setTableTest(data['hydra:member']);
-          }, error => {
-            console.error('Error parsing JSON:', error);
-          });
-        } else {
-          console.error(`Request failed: ${response.status}`, response);
-        }
+        if(response !== undefined) {
+          if (response.status === 200) {
+            console.log('Request successful');
+            response.json().then(data => {
+              setTableTest(data['hydra:member']);
+            }, error => {
+              console.error('Error parsing JSON:', error);
+            });
+          } else {
+            console.error(`Request failed: ${response.status}`, response);
+          }
+          } else {
+            console.error('Request failed', response);
+            props.openSnackBar('Une erreur est survenue lors de l\'enregistrement du pari');
+          }
       } catch (error) {
         console.error('Error:', error);
       }
@@ -57,9 +63,9 @@ const Accueil = ({ ...props}) => {
                   tableTest.filter( (match) => match.idCategory.name === cat.name).length > 0
                   ? tableTest.filter((match) => match.idCategory.name === cat.name).map((match) => {
                     return(
-                      <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer drop-shadow-banner pl-5' onClick={() => handleButtonClick("InfosMatch")}>
-                        <img src={match.banner}/> 
-                        <p className='mt-8'> {match.teamName1} VS { match.teamName2}</p>
+                      <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer drop-shadow-banner pl-5' onClick={() => handleButtonClick("InfosMatch", match.id)}>
+                        <img src={match.banner} alt='Match banner'/> 
+                        <p className='mt-8'> {match.teamId1.name} VS { match.teamId2.name}</p>
                       </div>
                     )
                   })

@@ -4,6 +4,7 @@ import Popup from "../PopUp";
 import { FaAngleLeft } from "react-icons/fa6";
 import Slogan from "../../atomes/Slogan/Slogan";
 import { getRequest } from "../../../services/ApiCallService";
+import { postRequest } from "../../../services/ApiCallService";
 
 const InfoMatch = ({...props}) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -18,7 +19,6 @@ const InfoMatch = ({...props}) => {
                 if (response.status === 200) {
                     console.log('Request successful');
                     response.json().then(data => {
-                        console.log('data ', data);
                         props.openSnackBar('Les informations sur le match ont bien été récupérées')
                         setMatchInfo(data);
                         setIsLoading(false);
@@ -45,6 +45,38 @@ const InfoMatch = ({...props}) => {
 
     const closePopup = () => {
         setIsPopupOpen(false);
+    }
+
+    const bet = async () => {
+        const request = {
+            users: [`/api/users/${localStorage.getItem('usersId')}`],
+            game: `/api/games/${props.matchId}`,
+            league: '/api/leagues/1',
+            team: `/api/teams/${teamToBet === matchInfo.teamId1.name ? matchInfo.teamId1.id : matchInfo.teamId2.id}`,
+            isDraw: false,
+            status: 'valid'
+        }
+        console.log(request);
+        try {
+            const response = await postRequest('http://localhost:8000/api/bets', request);
+            if (response !== undefined) {
+                if ((response.status === 201)) {
+                    console.log('Request successful');
+                    props.openSnackBar(`Vous avez parié sur ${teamToBet}`);
+                } else {
+                    console.error('Request failed', response);
+                    props.openSnackBar('Une erreur est survenue lors de l\'enregistrement du pari');
+                }
+            } else {
+                console.error('Request failed', response);
+                props.openSnackBar('Une erreur est survenue lors de l\'enregistrement du pari');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            props.openSnackBar('Une erreur est survenue lors de l\'enregistrement du pari');
+        }
+        closePopup();
+        props.setPage("InfosMatch");
     }
 
     return (
@@ -91,7 +123,7 @@ const InfoMatch = ({...props}) => {
                             </div>
                         </div>
                     </div>
-                    {isPopupOpen && (<Popup onClose={closePopup} team={teamToBet}/>)}
+                    {isPopupOpen && (<Popup onClose={closePopup} onConfirm={bet} team={teamToBet}/>)}
                 </div> 
             )}
         </div>

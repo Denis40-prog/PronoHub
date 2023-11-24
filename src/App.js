@@ -12,7 +12,7 @@ import SnackBar from './components/atomes/SnackBar/SnackBar';
 
 function App() {
   function setIsLogged() {
-    if(localStorage.getItem('decodedToken') !== null){
+    if(localStorage.getItem('token') !== null && localStorage.getItem('decodedToken') !== null){
       if(JSON.parse(localStorage.getItem('decodedToken')).exp > Date.now() / 1000){
         return true;
       } else {
@@ -46,16 +46,15 @@ function App() {
     setCookie('restriction', true,)
   }
 
-  const changePage = (name) => {
+  function changePage(name) {
     setPageName(name);
   };
 
   const changeMatchId = (id) => {
-    console.log(id);
     setIdMatch(id);
   }
   
-   const selectPage = () => {
+  const selectPage = () => {
     switch (pageName) {
       case "Connexion":
         setActivePage(<Connexion setPage={changePage} openSnackBar={openSnackBar} loggedInSetter={setIsLogged}/>);
@@ -67,7 +66,7 @@ function App() {
         setActivePage(<Contact />);
         break;
       case "Accueil":
-        setActivePage(<Accueil setPage={changePage}  setMatchId={changeMatchId}/>);
+        setActivePage(<Accueil setPage={changePage}  setMatchId={changeMatchId} openSnackBar={openSnackBar}/>);
         break;
       case "InfosMatch":
         setActivePage(<InfoMatch setPage={changePage} matchId={idMatch} openSnackBar={openSnackBar}/>);
@@ -82,7 +81,7 @@ function App() {
     <CookiesProvider>
       <div className="App">
         <body className='bg-black min-h-screen pb-10'>
-          {cookies.restriction ? <FirstScreen /> : <> <Header setPage={changePage} /> {activePage} </>}
+          {cookies.restriction ? <FirstScreen /> : <> <Header setPage={changePage} isLoggedIn={setIsLogged} openSnackBar={openSnackBar}/> {activePage} </>}
         </body>
         {open ? <SnackBar msg={snackBarMsg} /> : null}
       </div>
