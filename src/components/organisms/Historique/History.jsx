@@ -3,6 +3,7 @@ import HistoryButton from '../../atomes/HistoryButton/HistoryButton'
 import HistoryDisplay from '../../molecules/History/HistoryDisplay'
 import CrossButton from '../../atomes/CrossButton/CrossButton'
 import { getRequest } from '../../../services/ApiCallService'
+import { Tooltip } from 'react-tooltip';
 import './History.css'
 
 const History = ({...props}) => {
@@ -38,8 +39,9 @@ const History = ({...props}) => {
 
   return (
       displayHistory ? 
-      <div className='fixed right-10 top-24 z-10'>
-        <HistoryButton ToggleHistory={ToggleHistory}> </HistoryButton>
+      <div className='fixed right-10 top-24 z-10' data-tooltip-id="history" data-tooltip-content={'Voir l\'historique des paris'}>
+      <Tooltip id="history"/>
+        <HistoryButton ToggleHistory={ToggleHistory}/>
       </div> :
       <div className='z-10 right-0 fixed h-fit w-50 rounded-xl p-3 fadeIn backdrop-blur-sm'>
         <CrossButton ToggleHistory={ToggleHistory} />
