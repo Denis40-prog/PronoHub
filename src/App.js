@@ -9,6 +9,7 @@ import Contact from './components/molecules/Contact/Contact';
 import Accueil from './components/organisms/Accueil/Accueil';
 import InfoMatch from './components/organisms/InfoMatch/InfoMatch';
 import SnackBar from './components/atomes/SnackBar/SnackBar';
+import Loader from './components/molecules/Loader/Loader';
 
 function App() {
   function setIsLogged() {
@@ -23,8 +24,8 @@ function App() {
     }
   }
 
-  const [activePage, setActivePage] = useState(null);
   const [pageName, setPageName] = useState(setIsLogged() ? "Accueil" : "Connexion");
+  const [activePage, setActivePage] = useState(pageName);
   const [cookies, setCookie] = useCookies(['restriction']);
   const [idMatch, setIdMatch] = useState(null);
   const [open, setOpen] = useState(false);
@@ -70,6 +71,9 @@ function App() {
         break;
       case "InfosMatch":
         setActivePage(<InfoMatch setPage={changePage} matchId={idMatch} openSnackBar={openSnackBar}/>);
+        break;
+      case "Loader":
+        setActivePage(<Loader />);
         break;
       default:
         setActivePage(<Connexion setPage={changePage} openSnackBar={openSnackBar} loggedInSetter={setIsLogged}/>);
