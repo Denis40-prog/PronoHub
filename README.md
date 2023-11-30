@@ -27,7 +27,7 @@ We using the node version 20.8.1.
 
 If you use a to much different version you can use nvm for switch quickly
 ```bash
-  nvm use
+  nvm install
 ```
 
 Install all dependancies
