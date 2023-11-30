@@ -8,7 +8,6 @@ const Accueil = ({ ...props}) => {
   const [userScore, setUserScore] = useState(0)
 
   const payload_cat = [
-    
     {
       name: 'Rugby'
     },
