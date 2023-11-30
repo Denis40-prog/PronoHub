@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import History from '../Historique/History'
 import { getRequest } from '../../../services/ApiCallService'
 import Loader from '../../molecules/Loader/Loader'
-import { Tooltip } from 'react-tooltip';
 
 const Accueil = ({ ...props}) => {
   const [payload_match, setPayloadMatch] = useState([])
-  const [isLoading, setIsLoading] = useState(true);
-  const [userScore, setUserScore] = useState(0);
+  const [userScore, setUserScore] = useState(0)
 
   const payload_cat = [
     
@@ -23,12 +21,12 @@ const Accueil = ({ ...props}) => {
   ]
 
   async function fetchData() {
-    setIsLoading(true);
     try {
-      const response = await getRequest('http://localhost:8000/api/games');
+      const baseUrlApi = process.env.REACT_APP_API_URL
+      const response = await getRequest(`${baseUrlApi}/api/games`);
+
       if(response !== undefined) {
         if (response.status === 200) {
-          console.log('Request successful');
           response.json().then(data => {
             setPayloadMatch(data['hydra:member']);
           }, error => {
@@ -44,12 +42,12 @@ const Accueil = ({ ...props}) => {
     } catch (error) {
       console.error('Error:', error);
     }
-    setIsLoading(false);
   }
 
   async function fetchScore() {
     try {
-        const response = await getRequest(`http://localhost:8000/score/${localStorage.getItem('usersId')}`);
+      const baseUrlApi = process.env.REACT_APP_API_URL
+        const response = await getRequest(`${baseUrlApi}/score/${localStorage.getItem('usersId')}`);
         if (response.status === 200) {
             console.log('Request successful');
             response.json().then(data => {
@@ -76,13 +74,11 @@ const Accueil = ({ ...props}) => {
   };
 
   return (
-    <>
-      {isLoading ? (<Loader />) : (
-      <>
-        <History openSnackBar={props.openSnackBar}/>
+    <Suspense fallback={<Loader />} >
+      <History openSnackBar={props.openSnackBar}/>
         <div>
           <div className='py-5'>
-            <p className='text-white text-2xl px-5 text-right mr-16 mt-2'>Votre score: <span className='text-accent'>{userScore}</span></p>
+            <p className='text-white text-2xl fixed top-22 right-0 z-10 px-5 text-right mr-16 mt-2'>Votre score: <span className='text-accent'>{userScore}</span></p>
             { payload_cat.map((cat) => {
               return(
                 <div className="flex place-content-center flex-col" key={cat.id}>
@@ -107,9 +103,7 @@ const Accueil = ({ ...props}) => {
             }
           </div>
         </div>
-        </>
-      )}
-    </>
+    </Suspense>
   )
 }
 

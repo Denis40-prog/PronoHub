@@ -17,7 +17,8 @@ const InfoMatch = ({...props}) => {
     async function fetchData() {
         setIsLoading(true);
         try {
-            const response = await getRequest(`http://localhost:8000/api/games/${props.matchId}`);
+            const baseUrlApi = process.env.REACT_APP_API_URL
+            const response = await getRequest(`${baseUrlApi}/api/games/${props.matchId}`);
             if (response.status === 200) {
                 console.log('Request successful');
                 response.json().then(data => {
