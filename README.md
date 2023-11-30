@@ -35,7 +35,7 @@ Install all dependancies
   npm install
 ```
 
-Lunch the project
+Launch the project
 ```bash
   npm run start
 ```
