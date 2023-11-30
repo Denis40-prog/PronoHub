@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Tooltip } from 'react-tooltip';
 import Popup from "../PopUp";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -12,31 +12,26 @@ const InfoMatch = ({...props}) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [teamToBet, setTeamToBet] = useState("");
     const [matchInfo, setMatchInfo] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
+    
 
     async function fetchData() {
-        setIsLoading(true);
         try {
-            const response = await getRequest(`http://localhost:8000/api/games/${props.matchId}`);
-            if (response.status === 200) {
-                console.log('Request successful');
+            const baseUrlApi = process.env.REACT_APP_API_URL
+            const response = await getRequest(`${baseUrlApi}/games/${props.matchId}`);
+            if (response.status === 200) {  
                 response.json().then(data => {
                     props.openSnackBar('Les informations sur le match ont bien été récupérées')
                     setMatchInfo(data);
-                    setIsLoading(false);
                 }, error => {
                     console.error('Error parsing JSON:', error);
-                    setIsLoading(false);
                     window.location.reload();
                 });
             } else {
                 console.error(`Request failed: ${response.status}`, response);
-                setIsLoading(false);
                 window.location.reload();
             }
         } catch (error) {
             console.error('Error:', error);
-            setIsLoading(false);
             window.location.reload();
         }
     }
@@ -55,7 +50,6 @@ const InfoMatch = ({...props}) => {
     }
 
     const bet = async () => {
-        setIsLoading(true);
         const request = {
             users: [`/api/users/${localStorage.getItem('usersId')}`],
             game: `/api/games/${props.matchId}`,
@@ -65,10 +59,10 @@ const InfoMatch = ({...props}) => {
             status: 'pending'
         }
         try {
-            const response = await postRequest('http://localhost:8000/api/bets', request);
+            const baseUrlApi = process.env.REACT_APP_API_URL
+            const response = await postRequest(`${baseUrlApi}/api/bets`, request);
             if (response !== undefined) {
                 if ((response.status === 201)) {
-                    console.log('Request successful');
                     props.openSnackBar(`Vous avez parié sur ${teamToBet}`);
                     fetchData();
                 } else {
@@ -84,14 +78,10 @@ const InfoMatch = ({...props}) => {
             props.openSnackBar('Une erreur est survenue lors de l\'enregistrement du pari');
         }
         closePopup();
-        setIsLoading(false);
     }
 
     return (
-        <div>
-            {isLoading ? (
-                <Loader />
-            ) : ( 
+        <Suspense fallback={<Loader />}>
                 <div>
                     <Slogan />
                     <h2 className="flex col-auto ml-3 mt-10 items-center">
@@ -152,8 +142,7 @@ const InfoMatch = ({...props}) => {
                         </tbody>
                     </table>
                 </div>
-            )}
-        </div>
+        </Suspense>
     )
 }
 

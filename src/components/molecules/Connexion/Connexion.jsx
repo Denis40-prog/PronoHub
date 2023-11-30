@@ -23,13 +23,12 @@ const Connexion = ({ ...props }) => {
             email: emailValue,
             password: passwordValue
         }
-        console.log(request);
 
         try {
-            const response = await postRequest('http://localhost:8000/api/login_check', request);
+            const baseUrl = process.env.REACT_APP_API_URL
+            const response = await postRequest(`${baseUrl}/login_check`, request);
       
             if ((response.status === 200)) {
-                console.log('Request successful');
                 response.json().then(data => {
                     if (data && data.token) {
                         localStorage.setItem('token', data.token);

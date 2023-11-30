@@ -38,10 +38,10 @@ const Inscription = ({ ...props }) => {
         }
 
         try {
-            const response = await postRequest('http://localhost:8000/register', request);
+      const baseUrlApi = process.env.REACT_APP_API_URL
+            const response = await postRequest(`${baseUrlApi}/register`, request);
       
             if ((response.status === 201)) {
-                console.log('Request successful');
                 props.openSnackBar('Inscription Réussie');
                 props.setPage("Connexion");
             } else {
