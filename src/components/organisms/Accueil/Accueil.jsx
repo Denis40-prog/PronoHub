@@ -8,7 +8,6 @@ const Accueil = ({ ...props}) => {
   const [userScore, setUserScore] = useState(0)
 
   const payload_cat = [
-    
     {
       name: 'Rugby'
     },
@@ -16,7 +15,10 @@ const Accueil = ({ ...props}) => {
       name: 'Foot'
     },
     {
-      name: 'Basket'
+      name: 'Tennis'
+    },
+    {
+      name: 'Football Américain'
     }
   ]
 
