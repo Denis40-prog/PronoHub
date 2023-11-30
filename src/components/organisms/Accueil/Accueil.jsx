@@ -15,7 +15,10 @@ const Accueil = ({ ...props}) => {
       name: 'Foot'
     },
     {
-      name: 'Basket'
+      name: 'Tennis'
+    },
+    {
+      name: 'Football Américain'
     }
   ]
 
