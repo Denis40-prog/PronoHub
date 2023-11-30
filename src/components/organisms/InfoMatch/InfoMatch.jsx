@@ -60,7 +60,6 @@ const InfoMatch = ({...props}) => {
         const request = {
             users: [`/api/users/${localStorage.getItem('usersId')}`],
             game: `/api/games/${props.matchId}`,
-            league: '/api/leagues/1',
             team: `/api/teams/${teamToBet === matchInfo.teamId1.name ? matchInfo.teamId1.id : matchInfo.teamId2.id}`,
             isDraw: false,
             status: 'pending'

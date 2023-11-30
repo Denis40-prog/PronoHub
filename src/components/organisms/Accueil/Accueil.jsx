@@ -15,9 +15,6 @@ const Accueil = ({ ...props}) => {
       name: 'Foot'
     },
     {
-      name: 'Tennis'
-    },
-    {
       name: 'Football Américain'
     }
   ]
@@ -71,6 +68,8 @@ const Accueil = ({ ...props}) => {
   }, []);
 
   const handleButtonClick = (pageName, id) => {
+    console.log('id', id);
+    console.log('pagenmae', pageName);
     props.setPage(pageName);
     props.setMatchId(id);
   };
@@ -87,8 +86,8 @@ const Accueil = ({ ...props}) => {
                   <div className="ml-10 w-fit text-center mt-5 font-semibold rounded-lg disabled:opacity-25 text-sm px-5 text-white py-2.5 mr-2 mb-2 bg-accent"><p>{cat.name}</p></div>
                   <div className='overflow-x-scroll space-x-24 pt-8 flex-row flex text-white'>
                     {
-                      payload_match.filter( (match) => match.idCategory.name === cat.name).length > 0
-                      ? payload_match.filter((match) => match.idCategory.name === cat.name).map((match) => {
+                      payload_match.filter( (match) => match.category.name === cat.name).length > 0
+                      ? payload_match.filter((match) => match.category.name === cat.name).map((match) => {
                         return(
                           <div className='text-center w-1/3 mb-6 flex-shrink-0 cursor-pointer drop-shadow-banner pl-5' onClick={() => handleButtonClick("InfosMatch", match.id)}>
                             <img src={match.banner} alt='Match banner'/> 
