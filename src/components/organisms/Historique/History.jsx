@@ -16,9 +16,9 @@ const History = ({...props}) => {
 
   async function fetchData() {
     try {
-        const response = await getRequest(`http://localhost:8000/history/${localStorage.getItem('usersId')}`);
+      const baseUrlApi = process.env.REACT_APP_API_URL
+        const response = await getRequest(`${baseUrlApi}/history/${localStorage.getItem('usersId')}`);
         if (response.status === 200) {
-            console.log('Request successful');
             response.json().then(data => {
                 props.openSnackBar('Les informations sur le match ont bien été récupérées')
                 setPayload_history(data);

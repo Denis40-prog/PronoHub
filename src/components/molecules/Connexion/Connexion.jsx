@@ -6,7 +6,7 @@ const Connexion = ({ ...props }) => {
     const handleInscriptionclick = () => {
         props.setPage("Inscription");
     }
-    const [emailValue, setEmailValue] = useState('');
+    const [emailValue, setEmailValue] = useState(localStorage.getItem('username') ? localStorage.getItem('username') : '');
     const [passwordValue, setPasswordValue] = useState('');
 
     const handleEmailChange = (e) => {
@@ -23,13 +23,12 @@ const Connexion = ({ ...props }) => {
             email: emailValue,
             password: passwordValue
         }
-        console.log(request);
 
         try {
-            const response = await postRequest('http://localhost:8000/api/login_check', request);
+            const baseUrl = process.env.REACT_APP_API_URL;
+            const response = await postRequest(`${baseUrl}/api/login_check`, request);
       
             if ((response.status === 200)) {
-                console.log('Request successful');
                 response.json().then(data => {
                     if (data && data.token) {
                         localStorage.setItem('token', data.token);
